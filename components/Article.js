@@ -110,7 +110,8 @@ const data = [
 function articleMaker(object){
 // debugger
   
-  const articles = document.querySelector('.articles')
+  // 
+  const divArticles = document.createElement('div')
   const title = document.createElement('h2')
   const date = document.createElement('p')
   const paragraphs1 = document.createElement('p')
@@ -118,38 +119,42 @@ function articleMaker(object){
   const paragraphs3 = document.createElement('p')
   const expandButton = document.createElement('button')
 
+  // const articleOpen = document.querySelectorAll('p')
   
-  articles.appendChild(title)
-  articles.appendChild(date)
-  articles.appendChild(paragraphs1)
-  articles.appendChild(paragraphs2)
-  articles.appendChild(paragraphs3)
-  articles.appendChild(expandButton)
+  divArticles.appendChild(title)
+  divArticles.appendChild(date)
+  divArticles.appendChild(paragraphs1)
+  divArticles.appendChild(paragraphs2)
+  divArticles.appendChild(paragraphs3)
+  divArticles.appendChild(expandButton)
 
-  articles.className = 'articles'
-  date.className = 'date'
-  expandButton.className = 'expandButton'
-
+  divArticles.classList.add('article')
+  date.classList.add('date')
+  expandButton.classList.add('expandButton')
   
-
-  expandButton.addEventListener('click', () => {
-    articles.classList.toggle('article-open')
-  })
-
   title.textContent = object.title
   date.textContent = object.date
   paragraphs1.textContent = object.firstParagraph
   paragraphs2.textContent = object.secondParagraph
   paragraphs3.textContent = object.thirdParagraph
   expandButton.textContent = '+'
+  
+  
 
 
-  return articles
+  expandButton.addEventListener('click', () => {
+    divArticles.classList.toggle('article-open')
+  })
+
+  
+
+
+  return divArticles
 
 }
 
 data.forEach(element => {
-  const body = document.querySelector('body')
+  const body = document.querySelector('.articles')
   const thePanelElements = articleMaker(element)
   body.append(thePanelElements)
 });
