@@ -85,11 +85,76 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+  title: 'Professional Software Development in 2019',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
-
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
+*/
 
+
+function articleMaker(object){
+// debugger
+  
+  const articles = document.querySelector('.articles')
+  const title = document.createElement('h2')
+  const date = document.createElement('p')
+  const paragraphs1 = document.createElement('p')
+  const paragraphs2 = document.createElement('p')
+  const paragraphs3 = document.createElement('p')
+  const expandButton = document.createElement('button')
+
+  
+  articles.appendChild(title)
+  articles.appendChild(date)
+  articles.appendChild(paragraphs1)
+  articles.appendChild(paragraphs2)
+  articles.appendChild(paragraphs3)
+  articles.appendChild(expandButton)
+
+  articles.className = 'articles'
+  date.className = 'date'
+  expandButton.className = 'expandButton'
+
+  
+
+  expandButton.addEventListener('click', () => {
+    articles.classList.toggle('article-open')
+  })
+
+  title.textContent = object.title
+  date.textContent = object.date
+  paragraphs1.textContent = object.firstParagraph
+  paragraphs2.textContent = object.secondParagraph
+  paragraphs3.textContent = object.thirdParagraph
+  expandButton.textContent = '+'
+
+
+  return articles
+
+}
+
+data.forEach(element => {
+  const body = document.querySelector('body')
+  const thePanelElements = articleMaker(element)
+  body.append(thePanelElements)
+});
+
+/*
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
